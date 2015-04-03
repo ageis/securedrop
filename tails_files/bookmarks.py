@@ -11,9 +11,10 @@ sourceint = sys.argv[1]
 docint = sys.argv[2]
 
 bookmarks = [     ['http://' + docint, 'Document Interface', 'toolbar', ['SecureDrop']],
-	          ['http://' + sourceint, 'Source Interface', 'toolbar', ['SecureDrop']]]
-tags = []
+r          ['http://' + sourceint, 'Source Interface', 'toolbar', ['SecureDrop']]]
+tag = 'SecureDrop'
 
+sub = subprocess.call(['killall','firefox'])
 placesdb = "/home/amnesia/.mozilla/firefox/bookmarks/places.sqlite"
 
 print "Bookmarks to be inserted in %s" % placesdb
@@ -35,15 +36,7 @@ try:
     cur.execute("SELECT rowid FROM moz_bookmarks_roots where root_name = 'tags'")
     tagsRoot = int(cur.fetchone()[0])
 
-    for pla in bookmarks:
-      for tag in pla[3]:
-	tags.append(tag)
-    tags = list(set(tags))
-    print "All tags:"
-    print tags
-    
-    for tag in tags:
-      cur.execute('INSERT INTO "main"."moz_bookmarks" ("type","parent","title") VALUES (?1,?2,?3)',(2,tagsRoot,tag))
+    cur.execute('INSERT INTO "main"."moz_bookmarks" ("type","parent","title") VALUES (?1,?2,?3)',(2,tagsRoot,tag))
     
     con.commit()
     
