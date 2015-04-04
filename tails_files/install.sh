@@ -32,6 +32,18 @@ if [ ! -d "$ANSIBLE" ]; then
   exit 1
 fi
 
+# check if Tor Browser is running
+TBB=$(pgrep firefox | wc -l)
+if [ $TBB -ne 0 ]; then
+  echo "Please close the Tor Browser so we can add the interface bookmarks then re-run the script."
+  exit 1
+fi
+
+if [ ! -f $HOMEDIR/.mozilla/firefox/bookmarks/places.sqlite ]; then
+  echo "Please run the Tor Browser at least once and ensure the Browser bookmarks persistence is enabled."
+  exit 1
+fi
+
 # detect whether admin or journalist
 if [ -f $ANSIBLE/app-document-aths ]; then
   ADMIN=true
@@ -122,6 +134,9 @@ echo "Exec=/usr/local/bin/tor-browser $SOURCE" >> $INSTALL_DIR/source.desktop
 cp -p $INSTALL_DIR/document.desktop $DESKTOP
 cp -p $INSTALL_DIR/source.desktop $DESKTOP
 
+# add interface bookmarks to Tor Browser
+python bookmarks.py $DOCUMENT $SOURCE
+
 # make it all persistent
 sudo -u amnesia mkdir -p $DOTFILES/Desktop
 cp -p $DESKTOP/source.desktop $DOTFILES/Desktop
@@ -148,6 +163,8 @@ if $ADMIN; then
     echo ""
     echo "SSH aliases are set up. You can use them with 'ssh app' and 'ssh mon'"
   fi
+  echo "Go here for the next step in the installation documentation:"
+  echo "https://github.com/freedomofpress/securedrop/blob/develop/docs/install.md#set-up-two-factor-authentication-for-the-admin"
 fi
 echo ""
 exit 0

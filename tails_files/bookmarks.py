@@ -7,17 +7,17 @@ import subprocess
 
 con = None
 
-sourceint = sys.argv[1]
-docint = sys.argv[2]
+docint = sys.argv[1]
+srcint = sys.argv[2]
 
 bookmarks = [     ['http://' + docint, 'Document Interface', 'toolbar', ['SecureDrop']],
-r          ['http://' + sourceint, 'Source Interface', 'toolbar', ['SecureDrop']]]
+	    ['http://' + srcint, 'Source Interface', 'toolbar', ['SecureDrop']]]
 tag = 'SecureDrop'
 
 sub = subprocess.call(['killall','firefox'])
 placesdb = "/home/amnesia/.mozilla/firefox/bookmarks/places.sqlite"
 
-print "Bookmarks to be inserted in %s" % placesdb
+print "Bookmarks to be inserted in %s" % placesdb + " ..."
 
 try:
     con = lite.connect(placesdb)
@@ -52,13 +52,13 @@ try:
 	tagid = int(cur.fetchone()[0])#
 	cur.execute('INSERT INTO "main"."moz_bookmarks" ("type","fk","parent","title","position") VALUES (?1,?2,?3,?4,?5)',(1,place, tagid,bookmark[1],0))
       
-      print(bookmark[1] + " added")
+      print(bookmark[1] + " added.")
     
     con.commit()
        
 except lite.Error, e:
     
-    print "Error %s:" % e.args[0]
+    print "Error: %s:" % e.args[0]
     sys.exit(1)
     
 finally:
