@@ -119,7 +119,8 @@ opened up multiple avenues for third parties to collect information on
 those sources. This information can potentially be accessed by law
 enforcement or intelligence agencies and could unduly expose a source.
 
-**Apply applicable security headers**
+Apply applicable security headers
+---------------------------------
 
 Security headers give instructions to the web browser on how to handle
 requests from the web application. These headers set strict rules for
