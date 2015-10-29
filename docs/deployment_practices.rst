@@ -131,7 +131,7 @@ You can use the site
 `securityheaders.com <https://securityheaders.com>`__ or `securityheaders.io <https://securityheaders.io>`__
 to easily test your website's security headers.
 
-If you use Apache, you can use these:
+If you use Apache or nginx, you can use these lines in your configuration:
 
 +-------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 | Apache									| nginx                                                                            |
@@ -150,35 +150,6 @@ If you use Apache, you can use these:
 |    Header set X-Permitted-Cross-Domain-Policies: master-only			|    add_header Strict-Transport-Security max-age=16070400;                        |
 |    Header set Content-Security-Policy: "default-src 'self'"			|                                                                                  |
 +-------------------------------------------------------------------------------+----------------------------------------------------------------------------------+
-
-::
-
-    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-    Header edit Set-Cookie ^(.*)$ $;HttpOnly
-    Header set Pragma "no-cache"
-    Header set Expires "-1"
-    Header always append X-Frame-Options: DENY
-    Header set X-XSS-Protection: "1; mode=block"
-    Header set X-Content-Type-Options: nosniff
-    Header set X-Content-Security-Policy: "default-src 'self'"
-    Header set X-Download-Options: noopen
-    Header set X-Permitted-Cross-Domain-Policies: master-only
-    Header set Content-Security-Policy: "default-src 'self'"
-
-These lines will work for nginx:
-
-::
-
-    add_header Cache-Control "max-age=0, no-cache, no-store, must-revalidate";
-    add_header Pragma no-cache;
-    add_header Expires -1;
-    add_header X-Frame-Options DENY;
-    add_header X-XSS-Protection "1; mode=block";
-    add_header X-Content-Type-Options nosniff;
-    add_header Content-Security-Policy "default-src 'self'";
-    add_header X-Download-Options: noopen;
-    add_header X-Permitted-Cross-Domain-Policies master-only;
-    add_header Strict-Transport-Security max-age=16070400;
 
 **Additional Apache configuration**
 
