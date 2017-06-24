@@ -26,6 +26,9 @@ securedrop_data: /var/lib/securedrop
 # Custom text to be displayed on the Source Interface page.
 custom_notification_text: ""
 
+# The name of the issuer of OTP tokens
+otp_issuer_name: "SecureDrop"
+
 # Apt packages for configuring Apache service.
 apache_packages:
   - apache2-mpm-worker

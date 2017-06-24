@@ -115,7 +115,7 @@ def _add_user(is_admin=False): # pragma: no cover
             print('\nScan the QR code below with FreeOTP or Google '
                   'Authenticator:\n')
             uri = user.totp.provisioning_uri(username,
-                                             issuer_name='SecureDrop')
+                                             issuer_name=OTP_ISSUER_NAME)
             qr = qrcode.QRCode()
             qr.add_data(uri)
             qr.print_ascii(tty=sys.stdout.isatty())

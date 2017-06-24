@@ -56,6 +56,13 @@
       # as filepath, causing app role to fail.
       default: ""
 
+    - name: otp_issuer_name
+      prompt: >-
+        Name of the issuer of one-time password codes, e.g.
+        <Organization Name> SecureDrop
+      default: "SecureDrop"
+      private: no
+
     - name: securedrop_app_gpg_public_key
       prompt: Local filepath to public key for SecureDrop Application GPG public key
       default: SecureDrop.asc

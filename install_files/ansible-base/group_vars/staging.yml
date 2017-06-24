@@ -28,6 +28,9 @@ securedrop_app_gpg_fingerprint: "65A1B5FF195B56353CC63DFFCC40EF1228271441"
 # Custom text on source interface
 custom_notification_text: "This is a SecureDrop Staging VM for testing ONLY"
 
+# The name of the issuer of OTP tokens
+otp_issuer_name: "SecureDrop (staging)"
+
 # To allow direct connections to source journalist interfaces for ease of testing
 apache_listening_address: "0.0.0.0"
 apache_allow_from: "all"

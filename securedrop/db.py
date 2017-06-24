@@ -320,7 +320,7 @@ class Journalist(Base):
     def shared_secret_qrcode(self):
         uri = self.totp.provisioning_uri(
             self.username,
-            issuer_name="SecureDrop")
+            issuer_name=OTP_ISSUER_NAME)
 
         qr = qrcode.QRCode(
             box_size=15,

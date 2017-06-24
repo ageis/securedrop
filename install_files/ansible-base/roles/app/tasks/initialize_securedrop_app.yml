@@ -150,6 +150,15 @@
   tags:
     - securedrop_config
 
+- name: Declare OTP issuer name in config.py.
+  lineinfile:
+     dest: "{{ securedrop_code }}/config.py"
+     regexp: "^OTP_ISSUER_NAME"
+     line: "OTP_ISSUER_NAME = '{{ otp_issuer_name }}'"
+  when: otp_issuer_name is defined and otp_issuer_name != ''
+  tags:
+    - securedrop_config
+
 - name: Check whether sqlite database exists.
   stat:
     path: "{{ securedrop_data }}/db.sqlite"

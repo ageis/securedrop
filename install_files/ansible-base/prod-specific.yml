@@ -54,3 +54,6 @@ sasl_password: ""
 
 # Custom text that will appear on the source interface
 custom_notification_text: ""
+
+# The name of the issuer of OTP tokens
+otp_issuer_name: ""

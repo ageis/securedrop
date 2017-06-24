@@ -83,6 +83,10 @@ This custom notification can be configured by providing the desired message in
 For example, this can be used to notify potential sources that an instance is for
 testing purposes only.
 
+You may also customize the text of the issuer name of TOTP codes, so that when
+the QR code is scanned in it provides a convenient identifier to your authentication
+application.
+
 When you're done, save the file and quit the editor.
 
 .. _Install SecureDrop Servers:
